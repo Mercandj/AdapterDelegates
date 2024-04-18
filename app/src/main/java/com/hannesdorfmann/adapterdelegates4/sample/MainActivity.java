@@ -68,12 +68,12 @@ public class MainActivity extends AppCompatActivity {
     private List<DisplayableItem> getAnimals() {
         List<DisplayableItem> animals = new ArrayList<>();
 
-        animals.add(new Cat("American Curl"));
-        animals.add(new Cat("Baliness"));
-        animals.add(new Cat("Bengal"));
-        animals.add(new Cat("Corat"));
-        animals.add(new Cat("Manx"));
-        animals.add(new Cat("Nebelung"));
+        // animals.add(new Cat("American Curl"));
+        // animals.add(new Cat("Baliness"));
+        // animals.add(new Cat("Bengal"));
+        // animals.add(new Cat("Corat"));
+        // animals.add(new Cat("Manx"));
+        // animals.add(new Cat("Nebelung"));
         animals.add(new Dog("Aidi"));
         animals.add(new Dog("Chinook"));
         animals.add(new Dog("Appenzeller"));

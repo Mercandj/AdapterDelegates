@@ -1,7 +1,8 @@
 apply plugin: 'com.android.library'
-apply plugin: "com.vanniktech.maven.publish"
+// apply plugin: "com.vanniktech.maven.publish"
 
 android {
+    namespace = "com.hannesdorfmann.adapterdelegates4.paging"
     compileSdkVersion rootProject.ext.compileSdk
 
     defaultConfig {
@@ -20,10 +21,11 @@ android {
         targetCompatibility rootProject.ext.javaTargetCompatibility
     }
 
+    /*
     libraryVariants.all {
         it.generateBuildConfig.enabled = false
     }
-
+    */
 }
 
 dependencies {

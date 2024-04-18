@@ -61,9 +61,9 @@ internal class DslListAdapterDelegate<I : T, T>(
     private val layoutInflater: (parent: ViewGroup, layout: Int) -> View
 ) : AbsListItemAdapterDelegate<I, T, AdapterDelegateViewHolder<I>>() {
 
-    override fun isForViewType(item: T, items: MutableList<T>, position: Int): Boolean = on(
-        item, items, position
-    )
+    override fun isForViewType(item: T & Any, items: MutableList<T>, position: Int): Boolean {
+        return on(item, items, position)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup): AdapterDelegateViewHolder<I> =
         AdapterDelegateViewHolder<I>(
@@ -73,7 +73,7 @@ internal class DslListAdapterDelegate<I : T, T>(
         }
 
     override fun onBindViewHolder(
-        item: I,
+        item: I & Any,
         holder: AdapterDelegateViewHolder<I>,
         payloads: MutableList<Any>
     ) {
@@ -137,7 +137,7 @@ class AdapterDelegateViewHolder<T>(view: View) : RecyclerView.ViewHolder(view) {
         get() = if (_item === Uninitialized) {
             throw IllegalArgumentException(
                 "Item has not been set yet. That is an internal issue. " +
-                    "Please report at https://github.com/sockeqwe/AdapterDelegates"
+                        "Please report at https://github.com/sockeqwe/AdapterDelegates"
             )
         } else {
             @Suppress("UNCHECKED_CAST")
@@ -298,7 +298,7 @@ class AdapterDelegateViewHolder<T>(view: View) : RecyclerView.ViewHolder(view) {
         if (_onViewRecycled != null) {
             throw IllegalStateException(
                 "onViewRecycled { ... } is already defined. " +
-                    "Only one onViewRecycled { ... } is allowed."
+                        "Only one onViewRecycled { ... } is allowed."
             )
         }
         _onViewRecycled = block
@@ -311,7 +311,7 @@ class AdapterDelegateViewHolder<T>(view: View) : RecyclerView.ViewHolder(view) {
         if (_onFailedToRecycleView != null) {
             throw IllegalStateException(
                 "onFailedToRecycleView { ... } is already defined. " +
-                    "Only one onFailedToRecycleView { ... } is allowed."
+                        "Only one onFailedToRecycleView { ... } is allowed."
             )
         }
         _onFailedToRecycleView = block
@@ -324,7 +324,7 @@ class AdapterDelegateViewHolder<T>(view: View) : RecyclerView.ViewHolder(view) {
         if (_onViewAttachedToWindow != null) {
             throw IllegalStateException(
                 "onViewAttachedToWindow { ... } is already defined. " +
-                    "Only one onViewAttachedToWindow { ... } is allowed."
+                        "Only one onViewAttachedToWindow { ... } is allowed."
             )
         }
         _onViewAttachedToWindow = block
@@ -337,7 +337,7 @@ class AdapterDelegateViewHolder<T>(view: View) : RecyclerView.ViewHolder(view) {
         if (_onViewDetachedFromWindow != null) {
             throw IllegalStateException(
                 "onViewDetachedFromWindow { ... } is already defined. " +
-                    "Only one onViewDetachedFromWindow { ... } is allowed."
+                        "Only one onViewDetachedFromWindow { ... } is allowed."
             )
         }
         _onViewDetachedFromWindow = block

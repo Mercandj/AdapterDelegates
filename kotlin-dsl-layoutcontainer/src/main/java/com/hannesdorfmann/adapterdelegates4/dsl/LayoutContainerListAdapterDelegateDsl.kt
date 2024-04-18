@@ -61,9 +61,9 @@ internal class DslLayoutContainerListAdapterDelegate<I : T, T>(
     private val layoutInflater: (parent: ViewGroup, layoutRes: Int) -> View
 ) : AbsListItemAdapterDelegate<I, T, AdapterDelegateLayoutContainerViewHolder<I>>() {
 
-    override fun isForViewType(item: T, items: MutableList<T>, position: Int): Boolean = on(
-        item, items, position
-    )
+    override fun isForViewType(item: T & Any, items: MutableList<T>, position: Int): Boolean {
+        return on(item, items, position)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup): AdapterDelegateLayoutContainerViewHolder<I> =
         AdapterDelegateLayoutContainerViewHolder<I>(
@@ -73,7 +73,7 @@ internal class DslLayoutContainerListAdapterDelegate<I : T, T>(
         }
 
     override fun onBindViewHolder(
-        item: I,
+        item: I & Any,
         holder: AdapterDelegateLayoutContainerViewHolder<I>,
         payloads: MutableList<Any>
     ) {
@@ -140,7 +140,7 @@ class AdapterDelegateLayoutContainerViewHolder<T>(
         get() = if (_item === Uninitialized) {
             throw IllegalArgumentException(
                 "Item has not been set yet. That is an internal issue. " +
-                    "Please report at https://github.com/sockeqwe/AdapterDelegates"
+                        "Please report at https://github.com/sockeqwe/AdapterDelegates"
             )
         } else {
             @Suppress("UNCHECKED_CAST")
@@ -243,7 +243,7 @@ class AdapterDelegateLayoutContainerViewHolder<T>(
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             context.getColorStateList(id)
         } else {
-           context.resources.getColorStateList(id)
+            context.resources.getColorStateList(id)
         }
     }
 
@@ -301,7 +301,7 @@ class AdapterDelegateLayoutContainerViewHolder<T>(
         if (_onViewRecycled != null) {
             throw IllegalStateException(
                 "onViewRecycled { ... } is already defined. " +
-                    "Only one onViewRecycled { ... } is allowed."
+                        "Only one onViewRecycled { ... } is allowed."
             )
         }
         _onViewRecycled = block
@@ -314,7 +314,7 @@ class AdapterDelegateLayoutContainerViewHolder<T>(
         if (_onFailedToRecycleView != null) {
             throw IllegalStateException(
                 "onFailedToRecycleView { ... } is already defined. " +
-                    "Only one onFailedToRecycleView { ... } is allowed."
+                        "Only one onFailedToRecycleView { ... } is allowed."
             )
         }
         _onFailedToRecycleView = block
@@ -327,7 +327,7 @@ class AdapterDelegateLayoutContainerViewHolder<T>(
         if (_onViewAttachedToWindow != null) {
             throw IllegalStateException(
                 "onViewAttachedToWindow { ... } is already defined. " +
-                    "Only one onViewAttachedToWindow { ... } is allowed."
+                        "Only one onViewAttachedToWindow { ... } is allowed."
             )
         }
         _onViewAttachedToWindow = block
@@ -340,7 +340,7 @@ class AdapterDelegateLayoutContainerViewHolder<T>(
         if (_onViewDetachedFromWindow != null) {
             throw IllegalStateException(
                 "onViewDetachedFromWindow { ... } is already defined. " +
-                    "Only one onViewDetachedFromWindow { ... } is allowed."
+                        "Only one onViewDetachedFromWindow { ... } is allowed."
             )
         }
         _onViewDetachedFromWindow = block

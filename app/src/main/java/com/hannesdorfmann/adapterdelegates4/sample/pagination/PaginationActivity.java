@@ -45,12 +45,10 @@ public class PaginationActivity extends AppCompatActivity {
                         .addDelegate(new SnakeListItemAdapterDelegate(this))
                         .setFallbackDelegate(new LoadingAdapterDelegate(this));
 
-
         final PagedListDelegationAdapter<DisplayableItem> adapter =
                 new PagedListDelegationAdapter<DisplayableItem>(delegatesManager, callback);
 
         recyclerView.setAdapter(adapter);
-
 
         LiveData<PagedList<DisplayableItem>> pagedListLiveData =
                 new LivePagedListBuilder<>(new SampleDataSource.Factory(), 20)
@@ -63,13 +61,13 @@ public class PaginationActivity extends AppCompatActivity {
 
                             @Override
                             public void onItemAtFrontLoaded(@NonNull DisplayableItem itemAtFront) {
-                                Log.d("PaginationSource", "onItemAtFrontLoaded "+itemAtFront);
+                                Log.d("PaginationSource", "onItemAtFrontLoaded " + itemAtFront);
                                 super.onItemAtFrontLoaded(itemAtFront);
                             }
 
                             @Override
                             public void onItemAtEndLoaded(@NonNull DisplayableItem itemAtEnd) {
-                                Log.d("PaginationSource", "onItemAtEndLoaded "+itemAtEnd);
+                                Log.d("PaginationSource", "onItemAtEndLoaded " + itemAtEnd);
                                 super.onItemAtEndLoaded(itemAtEnd);
                             }
                         })

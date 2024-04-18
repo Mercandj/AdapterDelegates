@@ -1,14 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: "com.vanniktech.maven.publish"
 
-androidExtensions {
-    experimental = true
-}
-
-
 android {
+    namespace = "com.hannesdorfmann.adapterdelegates4.dsl"
     compileSdkVersion rootProject.ext.compileSdk
 
     defaultConfig {
@@ -27,9 +22,11 @@ android {
         targetCompatibility rootProject.ext.javaTargetCompatibility
     }
 
+    /*
     libraryVariants.all {
         it.generateBuildConfig.enabled = false
     }
+    */
 }
 
 dependencies {
